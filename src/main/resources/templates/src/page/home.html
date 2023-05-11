@@ -1,0 +1,62 @@
+<div ng-controller="productCtrl">
+    <h2><i>Home</i></h2>
+    <hr>
+
+    <div class="row">
+        <div class="col-lg-3">
+            Price Range:
+            <select ng-model="showPrice" ng-change="changePrice()">
+                <option value="">--Select Price--</option>
+                <option value="100000/500000">100.000đ - 500.000đ</option>
+                <option value="500001/1000000">500.001đ - 1.000.000đ</option>
+                <option value="1000001/3000000">1.000.001đ - 3.000.000đ</option>
+                <option value="3000001/5000000">3.000.001đ - 5.000.000đ</option>
+                <option value="5000001/1000000000">>5.000.000đ</option>
+            </select> 
+        </div>
+        <div class="col-lg-3">
+            Search: 
+            <input type="text" placeholder="Search" style="width: 100%;" ng-model="search" />
+        </div>
+        <div class="col-lg-3 " >
+            Show Product: <br>
+            <select ng-model="$rootScope.showProduct" ng-change="changeDeleted()">
+                <option value="">All</option>
+                <option value="/undeleted" selected>Undelete</option>
+                <option value="/deleted">Deleted</option>
+            </select>
+        </div>
+    </div>
+
+
+    <br>
+
+    <table class="table table-hover">
+        <thead>
+            <th>ID</th>
+            <th>Name <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('name')" /></th>
+            <th>Size <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('size')" /></th>
+            <th>Color <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('color')" /></th>
+            <th>Price <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('price')" /></th>
+            <th>Quantity <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('quantity')" /></th>
+            <th>Description <img style="cursor: pointer;" src="../image/swap.png" ng-click="sortData('description')" />
+            </th>
+            <th ng-show="$rootScope.guest">Funtion</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="list in listAll | orderBy :sortColumn: reverse | filter: { name: search }" >
+                <td>{{$index +1}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.size}}</td>
+                <td>{{list.color}}</td>
+                <td>{{list.price | currency : "" :0}} Vnđ</td>
+                <td>{{list.quantity}}</td>
+                <td>{{list.description}}</td>
+                <td ng-show="$rootScope.guest">
+                    <a href="#detail/{{list.id}}" class="btn btn-success"> <i class="fa-solid fa-eye"></i></a>
+                    <a href="#update/{{list.id}}" class="btn btn-warning"> <i class="fa-solid fa-pen"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

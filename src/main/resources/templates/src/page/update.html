@@ -1,0 +1,68 @@
+<div ng-controller="productCtrl">
+    <h2><i>UPDATE</i></h2>
+    <hr>
+    <form ng-submit="update()">
+        <table>
+            <tr>
+                <td>Name: </td>
+                <td><input type="text" ng-model="productEmpty.name"></td>
+                <td><span class="listError">{{listError.name}}</span></td>
+            </tr>
+            <tr>
+                <td>Size: </td>
+                <td><input type="number" ng-model="productEmpty.size"></td>
+                <td><span class="listError">{{listError.size}}</span></td>
+            </tr>
+            <tr>
+                <td>Color: </td>
+                <td><input type="text" ng-model="productEmpty.color"></td>
+                <td><span class="listError">{{listError.color}}</span></td>
+            </tr>
+            <tr>
+                <td>Price: </td>
+                <td><input type="number" ng-model="productEmpty.price"></td>
+                <td><span class="listError">{{listError.price}}</span></td>
+            </tr>
+
+            <tr>
+                <td>Quantity: </td>
+                <td><input type="number" ng-model="productEmpty.quantity"></td>
+                <td><span class="listError">{{listError.quantity}}</span></td>
+            </tr>
+
+            <tr>
+                <td>Description: </td>
+                <td><textarea cols="23" rows="3" ng-model="productEmpty.description"></textarea></td>
+                <td><span class="listError">{{listError.description}}</span></td>
+            </tr>
+        </table>
+        <button class="btn btn-success">SAVE CHANGE</button>
+        <button class="btn btn-secondary" type="reset">RESET</button>
+    </form>
+    <table class="table table-hover">
+        <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Description</th>
+            <th>Funtion</th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="list in listAll" ng-if="list.id == idUrl" style="cursor: pointer;" ng-click="detail($index)">
+                <td>{{list.id}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.size}}</td>
+                <td>{{list.color}}</td>
+                <td>{{list.price | currency : "" :0}} Vnđ</td>
+                <td>{{list.quantity}}</td>
+                <td>{{list.description}}</td>
+                <td>
+                    <a href="" class="btn btn-success" ng-click="detail($index)"> <i class="fa-solid fa-eye"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,57 @@
+<style>
+    .title {
+        color: brown;
+    }
+</style>
+
+<div ng-controller="productCtrl">
+    <h2><i>DETAIL</i></h2>
+    <hr>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="jumbotron card-body" ng-repeat="list in listAll" ng-if="list.id == idUrl">
+                <Strong><i class="title">1. ID: </i> {{list.id}}</Strong> <br>
+                <Strong><i class="title">2. Name: </i> {{list.name}}</Strong> <br>
+                <Strong><i class="title">3. Size: </i> {{list.size}}</Strong> <br>
+                <Strong><i class="title">4. Color: </i> {{list.color}}</Strong> <br>
+                <Strong><i class="title">5. Price: </i> {{list.price | currency: "" : 0}}Vnđ</Strong> <br>
+                <Strong><i class="title">6. Quantity: </i> {{list.quantity}}</Strong> <br>
+                <Strong><i class="title">7. Description: </i> {{list.description}}</Strong> <br>
+                <Strong><i class="title">8. Created User: </i> {{list.createdUser}}</Strong> <br>
+                <Strong><i class="title">9. Created Date: </i> {{list.createdDate |  date:"dd/MM/yyyy  HH:mm:ss"}}</Strong> <br>
+                <Strong><i class="title">10. Last Modified User: </i> {{list.lastModifiedUser}}</Strong> <br>
+                <Strong><i class="title">11. Last Modified Date: </i> {{list.lastModifiedDate |  date:"dd/MM/yyyy  HH:mm:ss"}}</Strong> <br>
+                <Strong><i class="title">12. isDelete: </i> {{list.deleted ? "Đã Xóa" : "Chưa Xóa"}}</Strong> <br>
+            </div>
+        </div>
+        <div class="col-lg -8">
+            <table class="table table-hover">
+                <thead>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Color</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Funtion</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="list in listAll">
+                        <td>{{list.id}}</td>
+                        <td>{{list.name}}</td>
+                        <td>{{list.size}}</td>
+                        <td>{{list.color}}</td>
+                        <td>{{list.price | currency : "" :0}} Vnđ</td>
+                        <td>{{list.quantity}}</td>
+                        <td>{{list.description}}</td>
+                        <td>
+                            <a href="#detail/{{list.id}}" class="btn btn-success"> <i
+                                    class="fa-solid fa-eye"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
